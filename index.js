@@ -13,7 +13,7 @@ const multer = Multer({
   storage: Multer.memoryStorage(),
 });
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 8000;
 
 const app = express();
 app.use(cors("*"));
@@ -65,6 +65,7 @@ app.post('/upload', multer.single('image'), async (req, res) => {
       data: result,
     });
   } catch (error) {
+    console.log(error.response);
     res.status(500).send({
       status: false,
       message: "Internal Server Error"
